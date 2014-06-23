@@ -55,5 +55,47 @@ class Item
         return $this->manager->whereParent( $this->id );
     }
     
+    public function attributes()
+    {
+        $args = func_get_args();
+        
+        if( is_array( $args[0] ) )
+        {
+            $this->attributes = array_merge( $this->attributes, $args[0] );
+            return $this;
+        }
+        elseif( isset( $args[0] ) && isset( $args[1] ) )
+        {
+            $this->attributes[$args[0]] = $args[1];
+            return $this;
+        }
+        elseif( isset( $args[0] ) )
+        {
+            return isset( $this->attributes[$args[0]] ) ? $this->attributes[$args[0]] : null;
+        }
+
+        return $this->attributes;
+    }
     
+    public function meta()
+    {
+        $args = func_get_args();
+        
+        if( is_array( $args[0] ) )
+        {
+            $this->meta = array_merge( $this->meta, $args[0] );
+            return $this;
+        }
+        elseif( isset( $args[0] ) && isset( $args[1] ) )
+        {
+            $this->meta[$args[0]] = $args[1];
+            return $this;
+        }
+        elseif( isset( $args[0] ) )
+        {
+            return isset( $this->meta[$args[0]] ) ? $this->meta[$args[0]] : null;
+        }
+
+        return $this->meta;        
+    }
 }
