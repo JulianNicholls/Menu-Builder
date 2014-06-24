@@ -60,7 +60,7 @@ class Item
     {
         $args = func_get_args();
         
-        if( is_array( $args[0] ) )
+        if( isset( $args[0] ) && is_array( $args[0] ) )
         {
             $this->attributes = array_merge( $this->attributes, $args[0] );
             return $this;
@@ -82,7 +82,7 @@ class Item
     {
         $args = func_get_args();
         
-        if( is_array( $args[0] ) )
+        if( isset( $args[0] ) && is_array( $args[0] ) )
         {
             $this->meta = array_merge( $this->meta, $args[0] );
             return $this;
