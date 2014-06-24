@@ -9,7 +9,7 @@ class Item
     
     public    $link;
     
-    public fuction __construct( $manager, $title, $url, $attributes = array(), $pid = 0 )
+    public function __construct( $manager, $title, $url, $attributes = array(), $pid = 0 )
     {
         $this->manager      = $manager;
         $this->id           = $this->id();
@@ -23,7 +23,7 @@ class Item
     
     public function add( $title, $options )
     {
-        unless( is_array( $options ) )
+        if( !is_array( $options ) )
             $options = array( 'url' => $options );
             
         $options['pid'] = $this->id;
@@ -48,7 +48,7 @@ class Item
     
     public function hasChildren()
     {
-        return count( $this->manager->whereParent( $this->id ) ) > 0;
+        return count( $this->children() ) ? true : false;
     }
     
     public function children()

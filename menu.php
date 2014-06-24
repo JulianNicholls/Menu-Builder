@@ -3,11 +3,11 @@ class Menu {
     protected   $menu       = array();
     protected   $reserved   = array( 'pid', 'url' );
     
-    public function add( $title, $option )
+    public function add( $title, $options )
     {
         $url  = $this->getUrl( $options );
         $pid  = isset( $options['pid'] ) ? $options['pid'] : null;
-        $attr = is_array( options ) ? $this->extractAttr( $options ) : array();
+        $attr = is_array( $options ) ? $this->extractAttr( $options ) : array();
         
         $item = new Item( $this, $title, $url, $attr, $pid );
         
@@ -47,16 +47,18 @@ class Menu {
         
         foreach( $this->whereParent( $pid ) as $item )
         {
-            $items .= "<{$element}{$this->parseAttr( $item->attributes() )}>";
+            $items .= "  <{$element}{$this->parseAttr( $item->attributes() )}>";
             
+            $items .= "<a href=\"{$item->link->url}\"{$this->parseAttr( $item->link->attributes )}>{$item->link->text}</a>";
+
             if( $item->hasChildren() ) 
             {
-                $items .= "<$type>";
+                $items .= "  <$type>";
                 $items .= $this->render( $type, $item->get_id() );
-                $items .= "</$type>";
+                $items .= "  </$type>\n";
             }
             
-            $items .= "</$element>";
+            $items .= "</$element>\n";
         }
         
         return $items;
@@ -88,7 +90,7 @@ class Menu {
                 
             $element = is_null( $value ) ? null : $key . '="' . $value . '"';
             
-            unless( is_null( $element ) )
+            if( !is_null( $element ) )
                 $html[] = $element;
         }
         
@@ -102,16 +104,16 @@ class Menu {
     
     public function asUl( $attributes = array() )
     {
-        return "<ul{$this->parseAttr( $attributes )}>{$this->render( 'ul' )}</ul>";
+        return "<ul{$this->parseAttr( $attributes )}>\n  {$this->render( 'ul' )}</ul>\n";
     }
 
     public function asOl( $attributes = array() )
     {
-        return "<ol{$this->parseAttr( $attributes )}>{$this->render( 'ol' )}</ol>";
+        return "<ol{$this->parseAttr( $attributes )}>\n  {$this->render( 'ol' )}</ol>\n";
     }
 
     public function asDiv( $attributes = array() )
     {
-        return "<div{$this->parseAttr( $attributes )}>{$this->render( 'div' )}</div>";
+        return "<div{$this->parseAttr( $attributes )}>\n  {$this->render( 'div' )}</div>\n";
     }
 }
