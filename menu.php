@@ -1,3 +1,4 @@
+<?php
 class Menu {
     protected   $menu       = array();
     protected   $reserved   = array( 'pid', 'url' );

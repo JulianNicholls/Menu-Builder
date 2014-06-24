@@ -1,3 +1,4 @@
+<?php
 class Item
 {
     protected $manager;
