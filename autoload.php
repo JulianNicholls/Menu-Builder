@@ -11,7 +11,7 @@ function bootstrapItems( $items )
     
   foreach( $items as $item ) : ?>
     <li <?php if( $item->hasChildren() ) echo 'class="dropdown"'; ?>>
-      <a href="<?php echo $item->link->get_url() ?>" <?php if( $item->hasCildren() ) echo 'class="dropdown-toggle" data-toggle="dropdown"'; ?>>
+      <a href="<?php echo $item->link->get_url() ?>" <?php if( $item->hasChildren() ) echo 'class="dropdown-toggle" data-toggle="dropdown"'; ?>>
         <?php echo $item->link->get_text() ?> <?php if( $item->hasChildren() ) echo '<b class="caret"></b>'?>
       </a>
       <?php if( $item->hasChildren() ) : ?>

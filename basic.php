@@ -38,9 +38,9 @@ $menu->filter( function( $item ) {
 </head>
 <body>
 <?php
-  echo $menu->asUl( array( 'class' => 'ausomw-ul' ) );
+  // echo $menu->asUl( array( 'class' => 'ausomw-ul' ) );
   // echo $menu->asOl( array( 'class' => 'ausomw-ol') );
-  // echo $menu->asDiv( array( 'class' => 'ausomw-div') );
+  echo $menu->asDiv( array( 'class' => 'ausomw-div') );
 ?>
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
